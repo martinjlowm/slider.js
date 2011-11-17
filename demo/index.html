@@ -74,19 +74,6 @@ code, pre { font-family: monospace; color: #e6e1dc; background-color: #222222; }
     <a href="http://github.com/gre/slider.js" target="_blank">
       <img src="forkmeongithub.png" alt="Fork me on Github" />
     </a>
-    <style>
-    #ads {
-      z-index: -1;
-      opacity: 0.5;
-      transition: opacity 0.4s;
-    }
-    #ads:hover {
-      opacity: 1;
-    }
-    </style>
-    <div id="ads">
-    <iframe frameborder="0" style="width: 240px; height: 240px; overflow: hidden" src="http://greweb.fr/ads/"></iframe>
-    </div>
   </div>
 
   <div id="wrapper">
@@ -103,6 +90,40 @@ code, pre { font-family: monospace; color: #e6e1dc; background-color: #222222; }
     <header>
       <h1 data-navtext="Slider demo">Slider.js <span class="new">v1.1</span>: Slideshow with jQuery, CSS Transitions and Canvas</h1>
       <p><strong>Slider.js is an easy-to-use customizable Javascript library to create image slideshows.</strong></p>
+    </header>
+
+    <header class="nextVersion" style="clear: both">
+      <h2>We are working hard on the next version of Slider.js with new ideas:</h2>
+      <p>
+        more customization, 
+        a live editing system to contribute to new themes and transitions with Github (gist),
+        a build system for making custom packages, 
+        a brand new transition mode using WebGL shaders, and much more...
+      </p>
+      <form id="subscribe" action="POST" url="subscribe.php">
+        <label for="mail">We can inform you when it's ready:</label>
+        <input id="mail" name="mail" type="text" placeholder="Your email" />
+        <button class="button email" type="submit">Keep me in touch</button>
+      </form>
+      <script type="text/javascript">
+$('#subscribe').submit(function(e){
+  var form = $(this);
+  e.preventDefault();
+  $.ajax({
+    type: form.attr('action'),
+    url: form.attr('url'),
+    data: { 'mail': form.find('[name=mail]').val() },
+    success: function(){
+      var thanks = $('<h3>Thanks!</h3>').hide();
+      form.after(thanks).slideUp();
+      thanks.slideDown();
+    },
+    error: function(){
+      form.addClass('error');
+    }
+  });
+});
+      </script>
     </header>
 
       <h2>Overview</h2>
