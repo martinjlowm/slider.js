@@ -293,6 +293,16 @@ class Slider
     @theme = theme
     this
 
+  setNameTag: (nameTag = "span") ->
+    if @node
+      caption = @node.find(".slide-image .caption")
+      caption.each( (i, tag) ->
+        tag = $(tag)
+        tag.replaceWith('<'+nameTag+' class="caption">'+tag.html()+'</'+nameTag+'>')
+      )
+    @nameTag = nameTag
+    this
+
   # set slider size
   setSize: (@w, @h) ->
     if @node
@@ -322,6 +332,7 @@ class Slider
   _sync: ->
     @setTransition @transition
     @setTheme @theme
+    @setNameTag @nameTag
     @setSize @w, @h
     @setTarget @target
     @slide @current
